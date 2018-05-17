@@ -5,6 +5,7 @@
 // */2 * * task
 
 static const std::string sc_strFracs = "5/8 14/9 3/10 echo blah";
+static const std::string sc_strStars = "*/8 */9 */10 echo blah";
 static const unsigned sc_uMin = 5;
 static const unsigned sc_uHr = 14;
 static const unsigned sc_uDay = 3;
@@ -52,6 +53,27 @@ TEST(task_tests,
      days_interval_is_extracted_from_string)
 {
     const auto c_uDyIntrv = extractDaysIntrv(sc_strFracs);
+    ASSERT_EQ(sc_uDayIntrv, c_uDyIntrv);
+}
+
+TEST(task_tests,
+     minutes_interval_is_extracted_from_string_with_stars)
+{
+    const auto c_uMinIntrv = extractMinutesIntrv(sc_strStars);
+    ASSERT_EQ(sc_uMinIntrv, c_uMinIntrv);
+}
+
+TEST(task_tests,
+     hours_interval_is_extracted_from_string_with_stars)
+{
+    const auto c_uHrIntrv = extractHoursIntrv(sc_strStars);
+    ASSERT_EQ(sc_uHrIntrv, c_uHrIntrv);
+}
+
+TEST(task_tests,
+     days_interval_is_extracted_from_string_with_stars)
+{
+    const auto c_uDyIntrv = extractDaysIntrv(sc_strStars);
     ASSERT_EQ(sc_uDayIntrv, c_uDyIntrv);
 }
 
