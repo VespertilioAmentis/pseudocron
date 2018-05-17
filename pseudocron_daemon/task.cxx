@@ -38,6 +38,10 @@ static unsigned extractNumeric(const std::string& c_strTask)
     {
         const std::string& strVal = c_v.at(_val);
         const auto c_typs = splitstr(strVal, "/");
+        if(c_typs.size() <= _typ)
+        {
+            return 0;
+        }
         const std::string& c_strField = c_typs.at(_typ);
         const auto c_val = boost::lexical_cast<unsigned>(c_strField);
         return c_val;
