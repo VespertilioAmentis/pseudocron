@@ -12,26 +12,39 @@ enum task_fields
     e_cnt
 };
 
+enum field_types
+{
+    ef_val,
+    ef_period,
+    //
+    ef_cnt
+};
+
 using str_vec = std::vector<std::string>;
 
-static str_vec splitstr(const std::string& c_str)
+static str_vec splitstr(const std::string& c_str,
+                        const std::string& c_delim = " ")
 {
     str_vec v;
-    boost::split(v, c_str, boost::is_any_of(" "));
+    boost::split(v, c_str, boost::is_any_of(c_delim));
     return v;
 }
 
-template<task_fields _val>
+template<task_fields _val, field_types _typ = ef_val>
 static unsigned extractNumeric(const std::string& c_strTask)
 {
     const auto c_v = splitstr(c_strTask);
     try
     {
-    return boost::lexical_cast<unsigned>(c_v.at(_val));
+        const std::string& strVal = c_v.at(_val);
+        const auto c_typs = splitstr(strVal, "/");
+        const std::string& c_strField = c_typs.at(_typ);
+        const auto c_val = boost::lexical_cast<unsigned>(c_strField);
+        return c_val;
     }
     catch(const boost::bad_lexical_cast&)
     {}
-    return 0;
+    return -1;
 }
 
 unsigned extractMinutesVal(const std::string &c_strTask)
