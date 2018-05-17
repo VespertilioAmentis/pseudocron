@@ -44,7 +44,7 @@ static unsigned extractNumeric(const std::string& c_strTask)
     }
     catch(const boost::bad_lexical_cast&)
     {}
-    return -1;
+    return 0;
 }
 
 unsigned extractMinutesVal(const std::string &c_strTask)
@@ -68,4 +68,19 @@ std::string extractCmd(const std::string& c_strTask)
     str_vec v;
     v.insert(v.end(), c_v.begin() + e_cnt, c_v.end());
     return boost::join(v, " ");
+}
+
+unsigned extractMinutesIntrv(const std::string &c_strTask)
+{
+    return extractNumeric<e_min, ef_period>(c_strTask);
+}
+
+unsigned extractDaysIntrv(const std::string &c_strTask)
+{
+    return extractNumeric<e_dy, ef_period>(c_strTask);
+}
+
+unsigned extractHoursIntrv(const std::string &c_strTask)
+{
+    return extractNumeric<e_hr, ef_period>(c_strTask);
 }
