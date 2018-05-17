@@ -49,7 +49,10 @@ unsigned extractDaysVal(const std::string &c_strTask)
     return extractNumeric<e_dy>(c_strTask);
 }
 
-std::string extractCmd(const std::string &c_strTask)
+std::string extractCmd(const std::string& c_strTask)
 {
-    return "";
+    const auto c_v = splitstr(c_strTask);
+    str_vec v;
+    v.insert(v.end(), c_v.begin() + e_cnt, c_v.end());
+    return boost::join(v, " ");
 }
