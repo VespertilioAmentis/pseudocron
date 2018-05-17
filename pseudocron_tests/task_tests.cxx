@@ -78,6 +78,13 @@ TEST(task_tests,
 }
 
 TEST(task_tests,
+     minute_interval_is_extracted_from_string_with_no_stars)
+{
+    const auto c_uMinIntrv = extractDaysIntrv("5 6 7 qwer");
+    ASSERT_EQ(0, c_uMinIntrv);
+}
+
+TEST(task_tests,
      cmd_is_extracted_from_string)
 {
     const auto strCmd = extractCmd(sc_strFracs);
