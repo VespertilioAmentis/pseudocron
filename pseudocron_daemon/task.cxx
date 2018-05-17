@@ -37,6 +37,10 @@ static unsigned extractNumeric(const std::string& c_strTask)
     try
     {
         const std::string& strVal = c_v.at(_val);
+        if(strVal == "*")
+        {
+            return _typ;
+        }
         const auto c_typs = splitstr(strVal, "/");
         if(c_typs.size() <= _typ)
         {
