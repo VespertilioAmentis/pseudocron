@@ -11,3 +11,5 @@ add_executable(pseudocron_tests ${daemon_sources})
 target_link_libraries(pseudocron_tests
     gtest
     pthread)
+
+target_compile_features(pseudocron_tests PRIVATE cxx_auto_type)
