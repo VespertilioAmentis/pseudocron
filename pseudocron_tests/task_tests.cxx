@@ -1,11 +1,14 @@
 #include <gtest/gtest.h>
 #include <pseudocron_daemon/task.hxx>
+#include <boost/foreach.hpp>
 
-static const std::string sc_strSuitableTime1 = "20180503T140500";
+static const std::string sc_strSuitableTime1 = "20170503T140500";
 static const std::string sc_strSuitableTime2 = "20180403T140500";
 
-static const std::string sc_strNonSuitableTime1 = "20180402T140500";
-static const std::string sc_strNonSuitableTime2 = "20180402T130500";
+static const std::string sc_strNonSuitableTime1 = "20170402T140500";
+static const std::string sc_strNonSuitableTime2 = "20180403T130500";
+
+typedef std::vector<boost::posix_time::ptime> times_vec;
 
 static const std::string sc_strNums = "5 14 3 echo blah";
 static const std::string sc_strStars = "*/8 */9 */10 echo blah";
@@ -88,7 +91,29 @@ TEST(task_tests,
 }
 
 TEST(task_tests,
-     starless_string_produces_task_that_launches_on_specified_time)
+     task_launches_on_suitable_times)
 {
     Task tsk(sc_strNums);
+    times_vec v_suitables;
+    v_suitables.push_back(boost::posix_time::from_iso_string(sc_strSuitableTime1));
+    v_suitables.push_back(boost::posix_time::from_iso_string(sc_strSuitableTime2));
+
+    BOOST_FOREACH(const times_vec::value_type& c_val, v_suitables)
+    {
+        ASSERT_TRUE(tsk.checkTimeAndExec(c_val));
+    }
+}
+
+TEST(task_tests,
+     task_does_not_launch_on_non_suitable_times)
+{
+    Task tsk(sc_strNums);
+    times_vec v_nonsuitables;
+    v_nonsuitables.push_back(boost::posix_time::from_iso_string(sc_strNonSuitableTime1));
+    v_nonsuitables.push_back(boost::posix_time::from_iso_string(sc_strNonSuitableTime2));
+
+    BOOST_FOREACH(const times_vec::value_type& c_val, v_nonsuitables)
+    {
+        ASSERT_FALSE(tsk.checkTimeAndExec(c_val));
+    }
 }

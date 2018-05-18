@@ -21,13 +21,13 @@ public:
 
 private:
     int min_val;
-    int min_dur;
+    int min_intr;
 
     int hr_val;
-    int hr_dur;
+    int hr_intr;
 
     int day_val;
-    int day_dur;
+    int day_intr;
 
     std::string cmd;
 };

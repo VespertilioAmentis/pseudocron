@@ -92,3 +92,18 @@ int extractHoursIntrv(const std::string &c_strTask)
 {
     return extractNumeric<e_hr, ef_period>(c_strTask);
 }
+
+Task::Task(const std::string &c_cfgLine)
+    :min_val(extractMinutesVal(c_cfgLine))
+    ,min_intr(extractMinutesIntrv(c_cfgLine))
+    ,hr_val(extractHoursVal(c_cfgLine))
+    ,hr_intr(extractHoursIntrv(c_cfgLine))
+    ,day_val(extractDaysVal(c_cfgLine))
+    ,day_intr(extractDaysIntrv(c_cfgLine))
+{
+}
+
+bool Task::checkTimeAndExec(const boost::posix_time::ptime &c_tm) const
+{
+    return false;
+}
