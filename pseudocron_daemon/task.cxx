@@ -102,6 +102,7 @@ Task::Task(const std::string &c_cfgLine)
     ,hr_intr(extractHoursIntrv(c_cfgLine))
     ,day_val(extractDaysVal(c_cfgLine))
     ,day_intr(extractDaysIntrv(c_cfgLine))
+    ,cmd(extractCmd(c_cfgLine))
 {
 }
 
@@ -115,5 +116,6 @@ bool Task::checkTimeAndExec(const boost::posix_time::ptime &c_tm) const
     {
         return false;
     }
+    system(cmd.c_str());
     return true;
 }
