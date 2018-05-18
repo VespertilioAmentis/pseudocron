@@ -1,8 +1,11 @@
 #include <gtest/gtest.h>
 #include <pseudocron_daemon/task.hxx>
 
-// * * * task
-// */2 * * task
+static const std::string sc_strSuitableTime1 = "20180503T140500";
+static const std::string sc_strSuitableTime2 = "20180403T140500";
+
+static const std::string sc_strNonSuitableTime1 = "20180402T140500";
+static const std::string sc_strNonSuitableTime2 = "20180402T130500";
 
 static const std::string sc_strNums = "5 14 3 echo blah";
 static const std::string sc_strStars = "*/8 */9 */10 echo blah";
@@ -85,7 +88,7 @@ TEST(task_tests,
 }
 
 TEST(task_tests,
-     task_is_created_from_string)
+     starless_string_produces_task_that_launches_on_specified_time)
 {
-
+    Task tsk(sc_strNums);
 }
