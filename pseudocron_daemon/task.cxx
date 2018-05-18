@@ -3,6 +3,8 @@
 #include <boost/lexical_cast.hpp>
 #include <vector>
 
+typedef boost::posix_time::ptime b_ptime;
+
 enum task_fields
 {
     e_min,
@@ -105,5 +107,13 @@ Task::Task(const std::string &c_cfgLine)
 
 bool Task::checkTimeAndExec(const boost::posix_time::ptime &c_tm) const
 {
-    return false;
+    b_ptime::time_duration_type c_time = c_tm.time_of_day();
+    b_ptime::date_type c_dat = c_tm.date();
+    if(c_time.hours() != hr_val
+            || c_time.minutes() != min_val
+            || c_dat.day() != day_val)
+    {
+        return false;
+    }
+    return true;
 }
