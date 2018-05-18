@@ -6,3 +6,5 @@ set(daemon_sources
     task.hxx
     task.cxx)
 add_executable(pseudocron_daemon ${daemon_sources})
+
+target_compile_features(pseudocron_daemon PRIVATE cxx_auto_type)

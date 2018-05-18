@@ -3,6 +3,8 @@
 #include <boost/lexical_cast.hpp>
 #include <vector>
 
+typedef boost::posix_time::ptime b_ptime;
+
 enum task_fields
 {
     e_min,
@@ -91,4 +93,29 @@ int extractDaysIntrv(const std::string &c_strTask)
 int extractHoursIntrv(const std::string &c_strTask)
 {
     return extractNumeric<e_hr, ef_period>(c_strTask);
+}
+
+Task::Task(const std::string &c_cfgLine)
+    :min_val(extractMinutesVal(c_cfgLine))
+    ,min_intr(extractMinutesIntrv(c_cfgLine))
+    ,hr_val(extractHoursVal(c_cfgLine))
+    ,hr_intr(extractHoursIntrv(c_cfgLine))
+    ,day_val(extractDaysVal(c_cfgLine))
+    ,day_intr(extractDaysIntrv(c_cfgLine))
+    ,cmd(extractCmd(c_cfgLine))
+{
+}
+
+bool Task::checkTimeAndExec(const boost::posix_time::ptime &c_tm) const
+{
+    b_ptime::time_duration_type c_time = c_tm.time_of_day();
+    b_ptime::date_type c_dat = c_tm.date();
+    if(c_time.hours() != hr_val
+            || c_time.minutes() != min_val
+            || c_dat.day() != day_val)
+    {
+        return false;
+    }
+    system(cmd.c_str());
+    return true;
 }
