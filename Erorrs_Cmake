@@ -1,9 +1,9 @@
-CMake Error at pseudocron_daemon/CMakeLists.txt:9 (target_compile_features):
-  Cannot specify compile features for target "pseudocron_deamon" which is not
-  built by this project.
-
-
--- Configuring incomplete, errors occurred!
-See also "/home/petr/pseudocron/CMakeFiles/CMakeOutput.log".
-Makefile:160: ошибка выполнения рецепта для цели «cmake_check_build_system»
-make: *** [cmake_check_build_system] Ошибка 1
+CMakeFiles/pseudocron_tests.dir/task_tests.cxx.o: In function `task_tests_starless_string_produces_task_that_launches_on_specified_time_Test::TestBody()':
+task_tests.cxx:(.text+0xdb4): undefined reference to `Task::Task(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+collect2: error: ld returned 1 exit status
+pseudocron_tests/CMakeFiles/pseudocron_tests.dir/build.make:146: ошибка выполнения рецепта для цели «pseudocron_tests/pseudocron_tests»
+make[2]: *** [pseudocron_tests/pseudocron_tests] Ошибка 1
+CMakeFiles/Makefile2:140: ошибка выполнения рецепта для цели «pseudocron_tests/CMakeFiles/pseudocron_tests.dir/all»
+make[1]: *** [pseudocron_tests/CMakeFiles/pseudocron_tests.dir/all] Ошибка 2
+Makefile:83: ошибка выполнения рецепта для цели «all»
+make: *** [all] Ошибка 2
