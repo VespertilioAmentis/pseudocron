@@ -3,7 +3,7 @@
 #include <boost/lexical_cast.hpp>
 #include <vector>
 
-typedef boost::posix_time::ptime b_ptime;
+using b_ptime = boost::posix_time::ptime;
 
 enum task_fields
 {
