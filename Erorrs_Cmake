@@ -1,0 +1,9 @@
+CMake Error at pseudocron_daemon/CMakeLists.txt:9 (target_compile_features):
+  Cannot specify compile features for target "pseudocron_deamon" which is not
+  built by this project.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/petr/pseudocron/CMakeFiles/CMakeOutput.log".
+Makefile:160: ошибка выполнения рецепта для цели «cmake_check_build_system»
+make: *** [cmake_check_build_system] Ошибка 1
