@@ -55,17 +55,17 @@ static unsigned extractNumeric(const std::string& c_strTask)
     return 0;
 }
 
-unsigned extractMinutesVal(const std::string &c_strTask)
+int extractMinutesVal(const std::string &c_strTask)
 {
     return extractNumeric<e_min>(c_strTask);
 }
 
-unsigned extractHoursVal(const std::string &c_strTask)
+int extractHoursVal(const std::string &c_strTask)
 {
     return extractNumeric<e_hr>(c_strTask);
 }
 
-unsigned extractDaysVal(const std::string &c_strTask)
+int extractDaysVal(const std::string &c_strTask)
 {
     return extractNumeric<e_dy>(c_strTask);
 }
@@ -78,17 +78,17 @@ std::string extractCmd(const std::string& c_strTask)
     return boost::join(v, " ");
 }
 
-unsigned extractMinutesIntrv(const std::string &c_strTask)
+int extractMinutesIntrv(const std::string &c_strTask)
 {
     return extractNumeric<e_min, ef_period>(c_strTask);
 }
 
-unsigned extractDaysIntrv(const std::string &c_strTask)
+int extractDaysIntrv(const std::string &c_strTask)
 {
     return extractNumeric<e_dy, ef_period>(c_strTask);
 }
 
-unsigned extractHoursIntrv(const std::string &c_strTask)
+int extractHoursIntrv(const std::string &c_strTask)
 {
     return extractNumeric<e_hr, ef_period>(c_strTask);
 }
