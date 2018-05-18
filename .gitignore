@@ -1,6 +1,11 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
+pseudocron_daemon/pseudocron_daemon
+pseudocron_tests/pseudocron_tests
+CMakeFiles
+CMakeCache.txt
+*.cmake
 *.user
 *~
 *.autosave
